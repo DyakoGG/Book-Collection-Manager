@@ -1,6 +1,6 @@
 
 #
-=======
+
 
 titles = []      # List of book titles
 authors = []     # List of book authors
