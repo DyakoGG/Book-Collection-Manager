@@ -1,4 +1,4 @@
-# Emil
+# Lists to store book information
 titles = []      # List of book titles
 authors = []     # List of book authors
 statuses = []    # List of read statuses: "Read" or "Unread"
