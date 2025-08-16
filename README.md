@@ -10,7 +10,7 @@ mark_as_read() → Updates the status of a book to "read".
 
 mark_as_unread() → Updates the status of a book to "unread".
 
-search_book() → Finds and displays a book’s details by title.
+search_book() → Finds and displays a book’s details if found.
 
 list_books() → Lists all books with their authors and current status.
 

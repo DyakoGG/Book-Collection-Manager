@@ -1,5 +1,3 @@
-#####
-
 titles = []      # List of book titles
 authors = []     # List of book authors
 statuses = []    # List of read statuses: "Read" or "Unread"
@@ -9,7 +7,6 @@ def add_book(title_name: str, author_name: str):
     authors.append(author_name)
     statuses.append("Unread")
     print(f"Title {title_name} from {author_name} was added to your library")
-
     # Append the title to titles list
     # Append the author to authors list
     # Append "Unread" to statuses list
@@ -22,7 +19,6 @@ def mark_as_read(title: str):
             statuses.pop(index)
             statuses.insert(index, "Read")
         index += 1
-
     # Loop through the titles list
     # If the title is found, update the corresponding status to "Read"
     # Print confirmation or error if not found
@@ -47,7 +43,6 @@ def search_book(keyword: str):
             keyword_found = True
         index += 1
     index = 0
-
     for each_author in authors:
         if keyword in each_author:
             keyword_found = True
@@ -56,7 +51,6 @@ def search_book(keyword: str):
         print(f"Book found: Title {title} from {author}, satus: {status}")
     else:
         print("No books found.")
-
     # Loop through the titles and authors
     # If keyword is found in title or author (case-insensitive), print book info
     # If no matches, print "No books found."
@@ -70,29 +64,22 @@ def list_books():
         current_status = statuses[current_index]
         current_index += 1
         book_num += 1
-
         print(f"{book_num}.{book} by {author_in_list}:{current_status}")
     # Loop through all books
     # Print each title, author, and status with numbering
 
-def suggest_book():
+def suggest_book():                   #TODO
     unread_books = []
     no_unread_books_found = False
     index = 0
-
     for each_satus in statuses:
         if each_satus == "Read":
             index += 1
             continue
-
         unread_books.append(index)
         index += 1
-    if no_unread_books_found:
+    if no_unread_books_found:               #TODO
         pass
-
-
-
-
     # Find all books where status is "Unread"
     # If at least one unread book exists, pick one at random and suggest it
     # If all books are read, print "No unread books left."
@@ -112,7 +99,6 @@ def delete_book(title):
         print(f"Book found: Title {title} from {author} deleted.")
     else:
         print("Book not found.")
-
     # Loop through titles
     # If match found, remove the title, author, and status at the same index
     # Print confirmation or "Book not found."
