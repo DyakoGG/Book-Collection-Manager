@@ -1,4 +1,5 @@
 import random
+from random import choice
 
 titles = []
 authors = []
@@ -81,14 +82,15 @@ def suggest_book():  #TODO
     for each_satus in statuses:
         if each_satus == "Read":
             index += 1
-            continue
         else:
             unread_books.append(index)
             index += 1
     if not unread_books:               #TODO
-        return "No unread books left."
+        return "No unread books in your list.Add some more!"
     else:
-        pass
+        index = random.randint(0, len(unread_books))
+        return f"How about {titles[index]} writen by {authors[index]}?"
+
 
     # Find all books where status is "Unread"
     # If at least one unread book exists, pick one at random and suggest it
