@@ -4,7 +4,6 @@
 
 ✴ To manage the collection, we wrote the following functions:
 
-
 ✅ add_book() → Adds a new book’s title, author, and status.
 
 ✅ mark_as_read() → Updates the status of a book to "read".
@@ -18,6 +17,5 @@
 ✅ suggest_book() → Suggests a random unread book from the collection.
 
 ✅ delete_book() → Removes a book by deleting its data at the corresponding index from all three lists.
-
 
 ✴ This project helped us practice working with parallel lists and maintaining synchronization between them. It also showed how functions can make the program modular, reusable, and easier to extend.

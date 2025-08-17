@@ -1,36 +1,45 @@
-titles = []      # List of book titles
-authors = []     # List of book authors
-statuses = []    # List of read statuses: "Read" or "Unread"
+import random
+
+titles = []
+authors = []
+statuses = []
 
 def add_book(title_name: str, author_name: str):
     titles.append(title_name)
     authors.append(author_name)
     statuses.append("Unread")
-    print(f"Title {title_name} from {author_name} was added to your library")
-    # Append the title to titles list
-    # Append the author to authors list
-    # Append "Unread" to statuses list
-    # Print a message confirming the addition
+    return f"Title {title_name} from {author_name} was added to your library."
+
 
 def mark_as_read(title: str):
     index = 0
+    title_found = False
     for each_title in titles:
         if each_title == title:
+            title_found = True
             statuses.pop(index)
             statuses.insert(index, "Read")
         index += 1
-    # Loop through the titles list
-    # If the title is found, update the corresponding status to "Read"
-    # Print confirmation or error if not found
+    if title_found:
+        return f"{title} is now marked as 'Read'."
+    else:
+        return f"{title} not found.Try again!"
+
 
 def mark_as_unread(title: str):
     index = 0
+    title_found = False
     for each_title in titles:
         if each_title == title:
+            title_found = True
             statuses.pop(index)
             statuses.insert(index, "Unread")
         index += 1
-    # Same logic as mark_as_read, but set status to "Unread"
+    if title_found:
+        return f"{title} is now marked as 'Unread'."
+    else:
+        return f"{title} not found.Try again!"
+
 
 def search_book(keyword: str):
     index = 0
@@ -48,41 +57,43 @@ def search_book(keyword: str):
             keyword_found = True
         index += 1
     if keyword_found:
-        print(f"Book found: Title {title} from {author}, satus: {status}")
+        return f"Book found: Title {title} from {author}, satus: {status}"
     else:
-        print("No books found.")
-    # Loop through the titles and authors
-    # If keyword is found in title or author (case-insensitive), print book info
-    # If no matches, print "No books found."
+        return "No books found."
+
 
 def list_books():
     current_index = 0
-    book_num = 0
-    for book in range(len(titles)):
-        book = titles[current_index]
-        author_in_list = authors[current_index]
-        current_status = statuses[current_index]
-        current_index += 1
-        book_num += 1
-        print(f"{book_num}.{book} by {author_in_list}:{current_status}")
-    # Loop through all books
-    # Print each title, author, and status with numbering
+    if authors:
+        for _ in range(1, len(titles) + 1):
+            book = titles[current_index]
+            author_in_list = authors[current_index]
+            current_status = statuses[current_index]
+            print(f"{_}.{book} by {author_in_list}: {current_status}")
+            current_index += 1
+    else:
+        print("Your list is empty!")
 
-def suggest_book():                   #TODO
+
+def suggest_book():  #TODO
     unread_books = []
-    no_unread_books_found = False
     index = 0
     for each_satus in statuses:
         if each_satus == "Read":
             index += 1
             continue
-        unread_books.append(index)
-        index += 1
-    if no_unread_books_found:               #TODO
+        else:
+            unread_books.append(index)
+            index += 1
+    if not unread_books:               #TODO
+        return "No unread books left."
+    else:
         pass
+
     # Find all books where status is "Unread"
     # If at least one unread book exists, pick one at random and suggest it
     # If all books are read, print "No unread books left."
+
 
 def delete_book(title):
     index = 0
@@ -96,12 +107,10 @@ def delete_book(title):
             book_found = True
         index += 1
     if book_found:
-        print(f"Book found: Title {title} from {author} deleted.")
+        return f"Book found: Title {title} from {author} successfully deleted."
     else:
-        print("Book not found.")
-    # Loop through titles
-    # If match found, remove the title, author, and status at the same index
-    # Print confirmation or "Book not found."
+        return "Book not found.Try again!"
+
 
 def main():
     print("📚 Welcome to the Digital Book Collection Manager 📚\n")
@@ -122,11 +131,11 @@ def main():
         if choice == '1':
             title = input("Enter the book title: ")
             author = input("Enter the author's name: ")
-            add_book(title, author)
+            print(add_book(title, author))
 
         elif choice == '2':
             title = input("Enter the title of the book to mark as read: ")
-            mark_as_read(title)
+            print(mark_as_read(title))
 
         elif choice == '3':
             title = input("Enter the title of the book to mark as unread: ")
@@ -134,17 +143,17 @@ def main():
 
         elif choice == '4':
             keyword = input("Enter a keyword to search: ")
-            search_book(keyword)
+            print(search_book(keyword))
 
         elif choice == '5':
             list_books()
 
         elif choice == '6':
-            suggest_book()
+            print(suggest_book())
 
         elif choice == '7':
             title = input("Enter the title of the book to delete: ")
-            delete_book(title)
+            print(delete_book(title))
 
         elif choice == '8':
             print("Goodbye! Happy reading! 📖")
