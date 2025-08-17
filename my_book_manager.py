@@ -1,4 +1,3 @@
-#
 titles = []      # List of book titles
 authors = []     # List of book authors
 statuses = []    # List of read statuses: "Read" or "Unread"
@@ -7,7 +6,7 @@ def add_book(title_name: str, author_name: str):
     titles.append(title_name)
     authors.append(author_name)
     statuses.append("Unread")
-    print(f"Title {title_name} from {author_name} was added to your library")
+    return f"Title {title_name} from {author_name} was added to your library"
 
     # Append the title to titles list
     # Append the author to authors list
@@ -21,7 +20,7 @@ def mark_as_read(title: str):
             statuses.pop(index)
             statuses.insert(index, "Read")
         index += 1
-
+    return f"The book {title}s is spoiled."
     # Loop through the titles list
     # If the title is found, update the corresponding status to "Read"
     # Print confirmation or error if not found
@@ -33,6 +32,7 @@ def mark_as_unread(title: str):
             statuses.pop(index)
             statuses.insert(index, "Unread")
         index += 1
+
     # Same logic as mark_as_read, but set status to "Unread"
 
 def search_book(keyword: str):
@@ -52,25 +52,26 @@ def search_book(keyword: str):
             keyword_found = True
         index += 1
     if keyword_found:
-        print(f"Book found: Title {title} from {author}, satus: {status}")
+        return f"Book found: Title {title} from {author}, satus: {status}"
     else:
-        print("No books found.")
+        return "No books found."
 
     # Loop through the titles and authors
     # If keyword is found in title or author (case-insensitive), print book info
     # If no matches, print "No books found."
 
 def list_books():
-    current_index = 0
-    book_num = 0
-    for book in range(len(titles)):
-        book = titles[current_index]
-        author_in_list = authors[current_index]
-        current_status = statuses[current_index]
-        current_index += 1
-        book_num += 1
 
-        print(f"{book_num}.{book} by {author_in_list}:{current_status}")
+    title = [t for t in titles]
+    author = [a for a in authors]
+    status = [s for s in statuses]
+
+    my_dict = ''
+
+    for title, author, status in zip(title, author, status):
+       my_dict += f"Title: {title}, Author: {author}, Status: {status}\n"
+
+    return my_dict
     # Loop through all books
     # Print each title, author, and status with numbering
 
@@ -130,27 +131,27 @@ def main():
         print("7. Delete a book")
         print("8. Exit")
 
-        choice = input("\nEnter your choice (1-8): ")
+        choice = input("\nEnter your choice (1-8): \n")
 
         if choice == '1':
-            title = input("Enter the book title: ")
-            author = input("Enter the author's name: ")
-            add_book(title, author)
+            title = input("Enter the book title: \n")
+            author = input("Enter the author's name: \n")
+            print(add_book(title, author))
 
         elif choice == '2':
-            title = input("Enter the title of the book to mark as read: ")
-            mark_as_read(title)
+            title = input("Enter the title of the book to mark as read: \n")
+            print(mark_as_read(title))
 
         elif choice == '3':
-            title = input("Enter the title of the book to mark as unread: ")
-            mark_as_unread(title)
+            title = input("Enter the title of the book to mark as unread: \n")
+            print(mark_as_unread(title))
 
         elif choice == '4':
-            keyword = input("Enter a keyword to search: ")
-            search_book(keyword)
+            keyword = input("Enter a keyword to search: \n")
+            print(search_book(keyword))
 
         elif choice == '5':
-            list_books()
+            print(list_books())
 
         elif choice == '6':
             suggest_book()
@@ -168,3 +169,14 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# 1
+# Dama pika
+# Emil
+# 1
+# Smelo surce
+# Dqko
+# 2
+# Smelo surce
+# 5
