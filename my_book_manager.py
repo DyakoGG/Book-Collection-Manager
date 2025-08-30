@@ -62,13 +62,9 @@ def search_book(keyword: str):
 
 def list_books():
 
-    title = [t for t in titles]
-    author = [a for a in authors]
-    status = [s for s in statuses]
-
     my_dict = ''
 
-    for title, author, status in zip(title, author, status):
+    for title, author, status in zip(titles, authors, statuses):
        my_dict += f"Title: {title}, Author: {author}, Status: {status}\n"
 
     return my_dict
@@ -89,9 +85,6 @@ def suggest_book():
         index += 1
     if no_unread_books_found:
         pass
-
-
-
 
     # Find all books where status is "Unread"
     # If at least one unread book exists, pick one at random and suggest it
